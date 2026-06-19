@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Buddy</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="edit_friend">Edit Friend</string>
+    <string name="delete_friend">Delete Friend</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="search_hint">Search by name or phone…</string>
+    <string name="no_friends">No buddies yet. Tap + to add one!</string>
+    <string name="pick_photo">Pick Photo</string>
+    <string name="reports">Reports</string>
+    <string name="gender_report">Male vs Female</string>
+    <string name="state_report">Friends by State</string>
+    <string name="confirm_delete">Are you sure you want to delete this buddy?</string>
+    <string name="confirm_delete_title">Delete Buddy</string>
+    <string name="name_required">Name is required</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="address_line1_hint">House no. / lot no. / floor and building name</string>
+    <string name="address_line2_hint">Number, street name / district</string>
+    <string name="address_line3_hint">Postcode and locality name</string>
+    <string name="address_line4_hint">State name</string>
+</resources>
