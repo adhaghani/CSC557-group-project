@@ -11,7 +11,11 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 
 class ReportsActivity : AppCompatActivity() {
@@ -50,38 +54,29 @@ class ReportsActivity : AppCompatActivity() {
             return
         }
 
-        val entries = counts.mapIndexed { index, result ->
-            BarEntry(index.toFloat(), result.count.toFloat())
+        val entries = counts.map { result ->
+            PieEntry(result.count.toFloat(), result.name)
         }
-        val labels = counts.map { it.name }
 
-        val dataSet = BarDataSet(entries, "Gender Distribution").apply {
+        val dataSet = PieDataSet(entries, "Gender Distribution").apply {
             colors = listOf(
                 Color.rgb(54, 162, 235),
                 Color.rgb(255, 99, 132)
             )
             valueTextSize = 14f
+            valueTextColor = Color.WHITE
+            valueFormatter = PercentFormatter(binding.chartGender)
         }
 
-        val barData = BarData(dataSet).apply {
-            barWidth = 0.6f
-        }
+        val pieData = PieData(dataSet)
 
         binding.chartGender.apply {
-            data = barData
+            data = pieData
             description.isEnabled = false
-            xAxis.apply {
-                valueFormatter = IndexAxisValueFormatter(labels)
-                position = XAxis.XAxisPosition.BOTTOM
-                granularity = 1f
-                setDrawGridLines(false)
-                textSize = 14f
-            }
-            axisLeft.apply {
-                granularity = 1f
-                axisMinimum = 0f
-            }
-            axisRight.isEnabled = false
+            isDrawHoleEnabled = true
+            holeRadius = 40f
+            setUsePercentValues(true)
+            legend.textSize = 14f
             animateY(800)
             invalidate()
         }
