@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.groupproject.adapter.FriendAdapter
 import com.example.groupproject.data.Friend
 import com.example.groupproject.databinding.ActivityMainBinding
+import com.example.groupproject.viewmodel.AuthViewModel
 import com.example.groupproject.viewmodel.FriendViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: FriendViewModel
+    private lateinit var authViewModel: AuthViewModel
     private lateinit var adapter: FriendAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         viewModel = ViewModelProvider(this)[FriendViewModel::class.java]
+        authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         setupRecyclerView()
         setupFab()
         setupSearch()
@@ -77,6 +80,14 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_reports -> {
                 startActivity(Intent(this, ReportsActivity::class.java))
+                true
+            }
+            R.id.action_logout -> {
+                authViewModel.logout()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

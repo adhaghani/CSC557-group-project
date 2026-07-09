@@ -22,4 +22,32 @@
     <string name="address_line2_hint">Number, street name / district</string>
     <string name="address_line3_hint">Postcode and locality name</string>
     <string name="address_line4_hint">State name</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="logout">Logout</string>
+    <string name="no_account">Don\'t have an account? Register</string>
+    <string name="has_account">Already have an account? Login</string>
+    <string name="register_prompt">Create a new account</string>
+    <string name="register_success">Registration successful. Please log in.</string>
+
+    <string-array name="malaysian_states">
+        <item>Johor</item>
+        <item>Kedah</item>
+        <item>Kelantan</item>
+        <item>Melaka</item>
+        <item>Negeri Sembilan</item>
+        <item>Pahang</item>
+        <item>Perak</item>
+        <item>Perlis</item>
+        <item>Pulau Pinang</item>
+        <item>Sabah</item>
+        <item>Sarawak</item>
+        <item>Selangor</item>
+        <item>Terengganu</item>
+        <item>WP Kuala Lumpur</item>
+    </string-array>
 </resources>

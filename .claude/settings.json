@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/usr/libexec/java_home -v 17)",
+      "Bash(/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/bin/jlink --version)",
+      "Bash(export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home)"
+    ]
+  }
+}

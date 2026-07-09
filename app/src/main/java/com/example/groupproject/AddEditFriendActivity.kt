@@ -3,6 +3,8 @@ package com.example.groupproject
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +22,7 @@ class AddEditFriendActivity : AppCompatActivity() {
     private var editingFriendId: Int? = null
     private var selectedPhotoPath: String? = null
     private var photoUri: Uri? = null
+    private lateinit var states: Array<String>
 
     private val pickImageLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()
@@ -37,6 +40,11 @@ class AddEditFriendActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[FriendViewModel::class.java]
 
+        // Set up the state dropdown with all 14 Malaysian states
+        states = resources.getStringArray(R.array.malaysian_states)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, states)
+        binding.etAddress4.setAdapter(adapter)
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -50,6 +58,16 @@ class AddEditFriendActivity : AppCompatActivity() {
             saveFriend()
         }
 
+        setupScrollOnFocus(
+            binding.etName,
+            binding.etPhone,
+            binding.etEmail,
+            binding.etAddress1,
+            binding.etAddress2,
+            binding.etAddress3,
+            binding.etAddress4
+        )
+
         if (editingFriendId != null) {
             supportActionBar?.title = "Edit Buddy"
             loadExistingFriend()
@@ -61,6 +79,18 @@ class AddEditFriendActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    private fun setupScrollOnFocus(vararg views: View) {
+        views.forEach { view ->
+            view.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                    binding.scrollView.postDelayed({
+                        binding.scrollView.smoothScrollTo(0, v.bottom)
+                    }, 200)
+                }
+            }
+        }
     }
 
     private fun loadExistingFriend() {

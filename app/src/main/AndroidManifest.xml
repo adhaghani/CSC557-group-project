@@ -15,7 +15,7 @@
         android:theme="@style/Theme.GroupProject">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.GroupProject">
             <intent-filter>
@@ -25,8 +25,20 @@
         </activity>
 
         <activity
+            android:name=".RegisterActivity"
+            android:parentActivityName=".LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/Theme.GroupProject" />
+
+        <activity
             android:name=".AddEditFriendActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".FriendDetailActivity"
